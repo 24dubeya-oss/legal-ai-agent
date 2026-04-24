@@ -1,3 +1,4 @@
 streamlit
 requests
 tavily-python
+google-generativeai
