@@ -2,28 +2,31 @@ import streamlit as st
 from tavily import TavilyClient
 import google.generativeai as genai
 
-# 🔑 API KEYS
+# 🔑 API KEYS (IMPORTANT: move to Railway Variables later)
 TAVILY_API_KEY = "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"
 GEMINI_API_KEY = "AIzaSyDJPQxaSBc2mjKpMYgxAm3YtEvsnOQbJ6E" 
 
-# Clients
+# Initialize clients
 tavily_client = TavilyClient(api_key=TAVILY_API_KEY)
 
 genai.configure(api_key=GEMINI_API_KEY)
-model = genai.GenerativeModel("gemini-1.5-flash")
 
-# UI
+# ✅ Correct working model
+model = genai.GenerativeModel("gemini-pro")
+
+# UI setup
 st.set_page_config(page_title="Legal Document Explainer")
 
 st.title("⚖️ Legal Document Explainer")
 st.write("Upload a legal document and get a simple explanation.")
 
+# File upload
 uploaded_file = st.file_uploader("Upload your legal document", type=["txt"])
 
 
 def explain_text(text):
     try:
-        # STEP 1: Get data from Tavily
+        # Step 1: Tavily search
         response = tavily_client.search(
             query=text,
             search_depth="basic"
@@ -32,15 +35,17 @@ def explain_text(text):
         results = response["results"][:3]
         raw_text = " ".join([r["content"] for r in results])
 
-        # STEP 2: Send to Gemini for proper explanation
+        # Step 2: Gemini summarization
         prompt = f"""
 You are a legal assistant AI.
-Explain the following legal content in very simple English for a student.
+
+Explain the following legal text in very simple English.
+Make it easy for a student to understand.
 
 Rules:
-- Use simple words
 - Do NOT copy legal text
-- Give clear explanation in points if needed
+- Use simple language
+- Use bullet points if needed
 
 Text:
 {raw_text}
@@ -54,7 +59,7 @@ Text:
         return f"Error: {e}"
 
 
-# UI logic
+# Main app logic
 if uploaded_file is not None:
     text = uploaded_file.read().decode("utf-8")
 
