@@ -17,10 +17,18 @@ uploaded_file = st.file_uploader("Upload your legal document", type=["txt"])
 def explain_text(text):
     try:
         response = client.search(
-            query=f"Explain the following legal document in very simple English only:\n{text}",
+            query=text,
             search_depth="basic"
         )
-        return response["results"][0]["content"]
+
+        # Take top 3 results
+        results = response["results"][:3]
+
+        # Combine content properly
+        combined_text = " ".join([r["content"] for r in results])
+
+        return "🧠 Simple Explanation:\n\n" + combined_text
+
     except Exception as e:
         return f"Error: {e}"
 
