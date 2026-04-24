@@ -1,9 +1,9 @@
 import streamlit as st
 from tavily import TavilyClient
-import google.generativeai as genai
+from google import genai
 
 # =========================
-# 🔑 API KEYS (IMPORTANT)
+# 🔑 API KEYS
 # =========================
 TAVILY_API_KEY = "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"
 GEMINI_API_KEY = "AIzaSyDJPQxaSBc2mjKpMYgxAm3YtEvsnOQbJ6E" 
@@ -13,10 +13,7 @@ GEMINI_API_KEY = "AIzaSyDJPQxaSBc2mjKpMYgxAm3YtEvsnOQbJ6E"
 # =========================
 tavily_client = TavilyClient(api_key=TAVILY_API_KEY)
 
-genai.configure(api_key=GEMINI_API_KEY)
-
-# ✅ MOST STABLE MODEL (CURRENTLY WORKING WIDELY)
-model = genai.GenerativeModel("gemini-1.5-flash")
+gemini_client = genai.Client(api_key=GEMINI_API_KEY)
 
 # =========================
 # STREAMLIT UI
@@ -30,11 +27,11 @@ uploaded_file = st.file_uploader("Upload your legal document", type=["txt"])
 
 
 # =========================
-# AI FUNCTION (CORE LOGIC)
+# AI FUNCTION
 # =========================
 def explain_text(text):
     try:
-        # STEP 1: GET CONTEXT FROM TAVILY
+        # STEP 1: Tavily search
         response = tavily_client.search(
             query=text,
             search_depth="basic"
@@ -42,42 +39,40 @@ def explain_text(text):
 
         results = response.get("results", [])[:3]
 
-        # safety check (IMPORTANT)
         if not results:
             return "No relevant information found."
 
         raw_context = " ".join([r.get("content", "") for r in results])
 
-        # STEP 2: SEND TO GEMINI FOR CLEAN EXPLANATION
+        # STEP 2: Gemini explanation (NEW SDK FIX)
         prompt = f"""
 You are a legal assistant AI.
 
-Task: Explain the given legal text in VERY SIMPLE English.
+Explain the following legal text in very simple English.
 
 Rules:
-- Use easy language
+- Use simple words
 - Do NOT copy legal text
-- Keep it short and clear
+- Make it short and clear
 - Use bullet points if needed
 
 Legal Text:
 {raw_context}
 """
 
-        result = model.generate_content(prompt)
+        response = gemini_client.models.generate_content(
+            model="gemini-1.5-flash",
+            contents=prompt
+        )
 
-        # safety check
-        if result and result.text:
-            return result.text
-        else:
-            return "AI did not return a valid response."
+        return response.text
 
     except Exception as e:
-        return f"Error occurred: {str(e)}"
+        return f"Error: {str(e)}"
 
 
 # =========================
-# APP FLOW
+# APP LOGIC
 # =========================
 if uploaded_file is not None:
     text = uploaded_file.read().decode("utf-8")
@@ -86,7 +81,7 @@ if uploaded_file is not None:
     st.write(text)
 
     if st.button("Analyze Document"):
-        with st.spinner("Analyzing with AI..."):
+        with st.spinner("Processing..."):
             explanation = explain_text(text)
 
         st.subheader("🧠 Simple Explanation")
