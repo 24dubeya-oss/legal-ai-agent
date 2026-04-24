@@ -1,34 +1,64 @@
-Legal Document AI Agent
+# Legal Document AI Agent
 
-1. Introduction
-This project is an AI-powered Legal Document Assistant that helps users understand complex legal text in simple English.
+## 1. Introduction
+This project is a web-based Legal Document Assistant that helps users understand complex legal documents in simple English using an AI-assisted retrieval system.
 
-2. Problem Statement
-Legal documents are difficult for non-legal users to understand. This system simplifies legal text using AI and provides explanations, summaries, and context.
+---
 
-3. Objectives
-- Simplify legal documents
-- Generate summaries
-- Provide contextual understanding using search tools
+## 2. Problem Statement
+Legal documents are often written in complex legal language that is difficult for common users to understand. This system simplifies legal content into readable and understandable English.
 
-4. System Architecture
+---
+
+## 3. Objectives
+- Simplify legal documents into easy English
+- Extract relevant information using search-based retrieval
+- Provide structured and readable output
+- Evaluate output quality using a rule-based system
+
+---
+
+## 4. System Architecture
 The system consists of:
-- Streamlit UI
-- Python Agent Controller
-- LLM (Ollama / Gemini)
-- Tavily Search API
+- Streamlit UI for user interaction
+- Python backend for processing
+- Tavily API for information retrieval
+- Rule-based evaluation module for output scoring
 
-  5. Modules
-- Explanation Module
-- Summary Module
-- LLM-as-Judge Module
-- Search Tool Integration
+---
 
-6. Tools Used
+## 5. Modules
+
+### 5.1 Input Module
+Handles user-uploaded legal text documents.
+
+### 5.2 Retrieval Module
+Uses Tavily API to fetch relevant legal and contextual information from the web.
+
+### 5.3 Processing Module
+Cleans and combines retrieved data into meaningful text.
+
+### 5.4 Explanation Module
+Generates simplified output from processed text.
+
+### 5.5 Evaluation Module (Rule-based LLM-as-a-Judge)
+Evaluates output quality based on:
+- Keyword relevance
+- Readability
+- Structure clarity
+
+Score is generated out of 3.
+
+---
+
+## 6. Tools Used
 - Python
 - Streamlit
-- Ollama / Gemini
 - Tavily API
+- Rule-based evaluation system
+- Railway (Deployment)
 
-7. Conclusion
-The project demonstrates an agentic AI system capable of reasoning, tool usage, and text simplification.
+---
+
+## 7. Conclusion
+The project demonstrates a lightweight AI-assisted system that retrieves, processes, and simplifies legal documents, along with a built-in evaluation mechanism to assess output quality.
