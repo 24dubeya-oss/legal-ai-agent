@@ -4,13 +4,13 @@ An AI-powered system that simplifies complex legal documents into easy-to-unders
 
 ------------------------------------------------------------
 
-Problem Statement
+## Problem Statement
 
 Legal documents such as agreements, contracts, and terms and conditions are often written in complex language that is difficult for common users to understand. This project solves this problem by providing simplified explanations and summaries.
 
 ------------------------------------------------------------
 
-Features
+## Features
 
 - Converts legal text into simple English
 - Generates summaries of documents
@@ -20,7 +20,7 @@ Features
 
 ------------------------------------------------------------
 
-Tech Stack
+## Tech Stack
 
 - Python
 - Streamlit
@@ -29,7 +29,13 @@ Tech Stack
 
 ------------------------------------------------------------
 
-How It Works
+## Architecture Diagram
+
+![Architecture](Architecture.jpeg)
+
+------------------------------------------------------------
+
+## How It Works
 
 1. User inputs legal text  
 2. System processes the text  
@@ -40,36 +46,36 @@ How It Works
 
 ------------------------------------------------------------
 
-Project Files
+## Project Files
 
 - app.py  
 - requirements.txt  
 - ProblemStatement.txt  
 - task_decomposition.txt  
-- report.docx  
+- report.txt  
 
 ------------------------------------------------------------
 
-How to Run
+## How to Run
 
 pip install -r requirements.txt  
 python -m streamlit run app.py  
 
 ------------------------------------------------------------
 
-Demo Video
+## Demo Video
 
 Will be added soon
 
 ------------------------------------------------------------
 
-Authors
+## Authors
 
-- Archi Dubey
+- Archi Dubey 
 - Palak Jane  
 
 ------------------------------------------------------------
 
-Status
+## Status
 
 Project Completed
