@@ -15,22 +15,16 @@ st.write("Upload a legal document and get a simple explanation.")
 uploaded_file = st.file_uploader("Upload your legal document", type=["txt"])
 
 def explain_text(text):
-    try:
-        response = client.search(
-            query=text,
-            search_depth="basic"
-        )
+    response = client.search(query=text, search_depth="basic")
 
-        # Take top 3 results
-        results = response["results"][:3]
+    results = response["results"][:3]
 
-        # Combine content properly
-        combined_text = " ".join([r["content"] for r in results])
+    raw_text = " ".join([r["content"] for r in results])
 
-        return "🧠 Simple Explanation:\n\n" + combined_text
+    # SIMPLE CLEANING (removes junk feel)
+    cleaned = raw_text.split("Page")[0].split("ATTORNEY")[0]
 
-    except Exception as e:
-        return f"Error: {e}"
+    return "🧠 Simple Explanation:\n\n" + cleaned
 
 # 🚀 Analyze button
 if uploaded_file is not None:
