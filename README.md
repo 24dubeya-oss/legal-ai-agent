@@ -24,10 +24,17 @@ Legal documents such as agreements, contracts, and terms and conditions are ofte
 
 - Python
 - Streamlit
-- Ollama / Gemini
 - Tavily API
+- Rule-Based LLM-as-a-Judge
+- Railway (Deployment)
 
 ------------------------------------------------------------
+
+## Live Demo
+https://legal-ai-agent-production.up.railway.app
+
+------------------------------------------------------------
+
 
 ## Architecture Diagram
 
@@ -35,14 +42,25 @@ Legal documents such as agreements, contracts, and terms and conditions are ofte
 
 ------------------------------------------------------------
 
+
+## ## LLM-as-a-Judge
+The system evaluates output quality using a rule-based scoring mechanism based on:
+- Keyword relevance
+- Readability
+- Structure clarity
+
+Score is given out of 3.
+
+-------------------------------------------------------------
+
 ## How It Works
 
-1. User inputs legal text  
-2. System processes the text  
-3. AI generates simplified explanation  
-4. Summary is created  
-5. Search tool provides extra context  
-6. Output is shown to user  
+1. User uploads legal document
+2. Text is sent to Tavily API for contextual retrieval
+3. System extracts relevant legal information
+4. Output is simplified into readable format
+5. Rule-based LLM Judge evaluates quality
+6. Final result is displayed to user  
 
 ------------------------------------------------------------
 
@@ -68,6 +86,16 @@ python -m streamlit run app.py
 Will be added soon
 
 ------------------------------------------------------------
+
+
+## Future Scope
+- Integration with real LLMs (Gemini / OpenAI)
+- Better legal summarization accuracy
+- Multi-language support
+- Chat-based legal assistant
+
+------------------------------------------------------------
+
 
 ## Authors
 
