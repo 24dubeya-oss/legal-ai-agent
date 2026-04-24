@@ -1,22 +1,30 @@
-Legal Document AI Agent – Task Decomposition
+# Legal Document AI Agent – Task Decomposition
 
-1.User Input
-The user provides a legal document by pasting text into the system.
+## 1. User Input
+The user uploads or inputs a legal document in text format.
 
-2.Preprocessing
-The input text is prepared and cleaned for processing by the AI model.
+## 2. Preprocessing
+The input text is extracted and cleaned for processing.
 
-3.Explanation Module
-The system uses a language model to convert complex legal text into simple and understandable English.
+## 3. Query Formation
+The cleaned text is converted into a search query for external retrieval.
 
-4.Summary Module
-The system generates a concise summary highlighting the key points of the document.
+## 4. Information Retrieval (Tavily API)
+The system uses Tavily Search API to fetch relevant legal and contextual information from the web.
 
-5.Tool Integration (Tavily Search)
-The system optionally uses an external search API to retrieve additional context or explanations related to the legal content.
+## 5. Text Processing
+The retrieved results are combined and filtered to remove irrelevant content.
 
-6.LLM-as-Judge
-The system evaluates the quality of the generated explanation based on clarity and simplicity.
+## 6. Explanation Generation
+The processed text is converted into a simplified explanation using extracted contextual information.
 
-7.Output Display
-The final explanation, summary, and additional information are displayed to the user through the interface.
+## 7. Output Evaluation (Rule-based LLM-as-a-Judge)
+The system evaluates output quality using a rule-based scoring system based on:
+- Keyword relevance
+- Readability
+- Structure clarity
+
+A score is generated out of 3.
+
+## 8. Output Display
+The final explanation and evaluation score are displayed using the Streamlit interface.
