@@ -1,0 +1,34 @@
+Legal Document AI Agent
+
+1. Introduction
+This project is an AI-powered Legal Document Assistant that helps users understand complex legal text in simple English.
+
+2. Problem Statement
+Legal documents are difficult for non-legal users to understand. This system simplifies legal text using AI and provides explanations, summaries, and context.
+
+3. Objectives
+- Simplify legal documents
+- Generate summaries
+- Provide contextual understanding using search tools
+
+4. System Architecture
+The system consists of:
+- Streamlit UI
+- Python Agent Controller
+- LLM (Ollama / Gemini)
+- Tavily Search API
+
+  5. Modules
+- Explanation Module
+- Summary Module
+- LLM-as-Judge Module
+- Search Tool Integration
+
+6. Tools Used
+- Python
+- Streamlit
+- Ollama / Gemini
+- Tavily API
+
+7. Conclusion
+The project demonstrates an agentic AI system capable of reasoning, tool usage, and text simplification.
