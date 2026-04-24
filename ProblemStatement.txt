@@ -1,0 +1,9 @@
+Legal Document AI Agent – Problem Statement
+
+Legal documents such as agreements, contracts, and terms and conditions are often written in complex language that is difficult for common users to understand. This creates confusion and increases the risk of misinterpretation of important clauses, responsibilities, and legal obligations.
+
+The problem addressed in this project is the lack of accessibility and clarity in legal documents for non-expert users. Many individuals are unable to fully understand the implications of legal text, which may lead to poor decision-making or unintended consequences.
+
+To solve this problem, we developed an AI-powered Legal Document Explainer that simplifies complex legal text into easy-to-understand language. The system also provides summaries of key points and can retrieve additional context using external search tools.
+
+This project uses an agentic AI approach, where the system performs multiple steps such as understanding user input, processing it using a language model, optionally using external tools, and generating meaningful output. This makes the system more intelligent, interactive, and useful compared to a traditional application.
