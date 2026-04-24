@@ -83,7 +83,7 @@ python -m streamlit run app.py
 
 ## Demo Video
 
-Will be added soon
+https://www.loom.com/share/3ebabffd07eb4989acf44a3495afb0f1
 
 ------------------------------------------------------------
 
